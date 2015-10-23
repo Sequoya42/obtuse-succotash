@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sh1.h                                           :+:      :+:    :+:   */
+/*   ft_sh.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/11 15:34:58 by rbaum             #+#    #+#             */
-/*   Updated: 2015/03/11 04:21:48 by rbaum            ###   ########.fr       */
+/*   Created: 2015/10/23 15:46:14 by rbaum             #+#    #+#             */
+/*   Updated: 2015/10/23 15:46:47 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SH1_H
-# define FT_SH1_H
+#ifndef FT_SH_H
+# define FT_SH_H
+ // opendir
+  // ◦ // readdir // ◦ // closedir // 
+  // malloc // ◦ // free // ◦ // exit //
+    // getcwd // ◦ // chdir // ◦ // fork 
+    // stat // ◦ // lstat // ◦ // fstat // 
+     // open // ◦ // close // ◦ // read //
+     // write // ◦ // execve // ◦ // access //
+     // wait // ◦ // waitpid // ◦ // wait3 // ◦ // wait4 //
+      // signal // 
 
-# include <unistd.h>
-# include <stdlib.h>
 # include <dirent.h>
 # include <fcntl.h>
 # include <signal.h>
@@ -44,7 +51,7 @@ void		ft_prompt(void);
 void		ft_gest_cmd(void);
 void		ft_get_right_cmd(void);
 void		ft_get_pwd(void);
-int			ft_exit(void);
+int			ft_exit_sh(void);
 void		ft_update_env(void);
 void		stop_singing(void);
 void		ft_previous_dir(void);

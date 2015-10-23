@@ -6,13 +6,13 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/13 15:08:36 by rbaum             #+#    #+#             */
-/*   Updated: 2015/03/11 06:38:07 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/10/23 15:44:14 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sh1.h"
+#include "ft_sh.h"
 
-int				ft_exit(void)
+int				ft_exit_sh(void)
 {
 	int			i;
 	char		*tmp;

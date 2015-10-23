@@ -6,11 +6,11 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 16:03:48 by rbaum             #+#    #+#             */
-/*   Updated: 2015/10/21 11:58:37 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/10/23 15:44:33 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sh1.h"
+#include "ft_sh.h"
 
 void			sig_return(int signo)
 {

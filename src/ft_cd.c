@@ -6,11 +6,11 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/14 15:52:58 by rbaum             #+#    #+#             */
-/*   Updated: 2015/03/11 07:05:25 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/10/23 15:44:15 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sh1.h"
+#include "ft_sh.h"
 
 void	ft_update_env(void)
 {

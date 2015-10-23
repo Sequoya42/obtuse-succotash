@@ -6,11 +6,11 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 19:45:34 by rbaum             #+#    #+#             */
-/*   Updated: 2015/03/11 17:50:34 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/10/23 15:44:16 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sh1.h"
+#include "ft_sh.h"
 
 void				ft_get_right_cmd(void)
 {
@@ -111,7 +111,7 @@ int					check_path(char **arg)
 void				ft_gest_cmd(void)
 {
 	if (ft_strcmp(SING->arg[0], "exit") == 0)
-		ft_exit();
+		ft_exit_sh();
 	else if (ft_strcmp(SING->arg[0], "setenv") == 0)
 		set_env();
 	else if (ft_strcmp(SING->arg[0], "env") == 0)

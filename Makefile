@@ -5,18 +5,19 @@
 #                                                     +:+ +:+         +:+      #
 #    By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/02/11 15:34:34 by rbaum             #+#    #+#              #
-#    Updated: 2015/03/04 09:40:24 by rbaum            ###   ########.fr        #
+#    Created: 2015/03/12 17:20:35 by rbaum             #+#    #+#              #
+#    Updated: 2015/10/11 18:42:41 by rbaum            ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
+
 
 .PHONY:			all, libft, clean, fclean, re
 
 CC =			gcc
 
-CFLAG =			-Wall -Werror -Wextra
+CFLAG =			-Wall -Wextra -Werror
 
-NAME =			ft_minishell1
+NAME =			21sh
 
 SRC_PATH =		./src/
 
@@ -26,19 +27,14 @@ LIBFT_PATH =	./libft/
 
 INC_PATH =		./inc/
 
-SRC_NAME =		main.c\
-				ft_prompt.c\
-				ft_gest_cmd.c\
-				ft_env.c\
-				ft_sub_env.c\
-				ft_short_cmd.c\
-				ft_cd.c\
+SRC_NAME =		main.c			ft_prompt.c		ft_gest_cmd.c		ft_env.c\
+				ft_sub_env.c	ft_short_cmd.c	ft_cd.c\
 
 OBJ_NAME =		$(SRC_NAME:.c=.o)
 
 LIBFT_NAME =	libft.a
 
-INC_NAME =		ft_sh1.h
+INC_NAME =		ft_sh.h
 
 SRC =			$(addprefix $(SRC_PATH),$(SRC_NAME))
 
@@ -48,17 +44,21 @@ LIBFT =			$(addprefix $(LIBFT_PATH),$(LIBFT_NAME))
 
 INC =			$(addprefix $(INC_PATH),$(INC_NAME))
 
-INCLIBFT_PATH =	$(LIBFT_PATH)
+INCLIBFT = 		$(LIBFT_PATH)inc
 
-all:			libft $(NAME)
+SELECT_FLAG =	-ltermcap
+
+LIBFT_FLAG = 	-L$(LIBFT_PATH) -lft
+
+all:			libft $(NAME) 
 
 $(NAME):		$(OBJ)
-				@$(CC) -L$(LIBFT_PATH) -lft -o $(NAME) $(OBJ)
-				@echo "minishell created"
+				@$(CC) $(LIBFT_FLAG) $(SELECT_FLAG) -o $@ $^
+				@echo "Shell created"
 
-$(OBJ_PATH)%.o:	$(SRC_PATH)%.c
+$(OBJ_PATH)%.o:	$(SRC_PATH)%.c $(INC)
 				@mkdir -p $(OBJ_PATH)
-				@$(CC) $(CFLAG) -I$(INC_PATH) -I$(INCLIBFT_PATH) -o $@ -c $<
+				@$(CC) $(CFLAG) -I$(INC_PATH) -I$(INCLIBFT) -o $@ -c $<
 
 libft:			$(LIBFT)
 

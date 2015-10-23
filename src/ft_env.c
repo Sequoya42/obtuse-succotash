@@ -6,11 +6,11 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/23 16:38:48 by rbaum             #+#    #+#             */
-/*   Updated: 2015/03/11 07:06:19 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/10/23 15:44:15 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sh1.h"
+#include "ft_sh.h"
 
 int				ft_tmp_aff(int l, char **tmp)
 {

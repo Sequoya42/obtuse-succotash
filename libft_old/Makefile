@@ -6,7 +6,7 @@
 #    By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/11 17:48:47 by rbaum             #+#    #+#              #
-#    Updated: 2015/10/20 15:13:26 by rbaum            ###   ########.fr        #
+#    Updated: 2015/02/20 18:08:39 by rbaum            ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -16,13 +16,7 @@ CFLAG = -Wall -Werror -Wextra
 
 NAME = libft.a
 
-INC_PATH =	./inc/
-
-OBJ_PATH = ./obj/
-
-SRC_PATH = ./src/
-
-SRC_NAME = ft_atoi.c		ft_bzero.c		ft_isalnum.c	ft_isalpha.c	\
+SRC = ft_atoi.c		ft_bzero.c		ft_isalnum.c	ft_isalpha.c	\
     ft_isascii.c	ft_isdigit.c	ft_isprint.c	ft_itoa.c		\
 	ft_memalloc.c	ft_memccpy.c	ft_memchr.c		ft_memcmp.c		\
     ft_memcpy.c		ft_memdel.c		ft_memmove.c	ft_memset.c		\
@@ -39,35 +33,24 @@ SRC_NAME = ft_atoi.c		ft_bzero.c		ft_isalnum.c	ft_isalpha.c	\
 	ft_lstinter.c	ft_lstnew.c		ft_lstmap.c		get_next_line.c \
 	ft_putnbrn.c	ft_putnbrendl.c	ft_strndup.c	ft_clear_tab.c	\
 	ft_nb_tab.c		ft_split_char.c	ft_update_tab.c	ft_error.c		\
-	ft_strdup_tab.c	debug.c	
-
-OBJ_NAME = $(SRC_NAME:.c=.o)
-
-INC_NAME = libft.h
-
-SRC =		$(addprefix $(SRC_PATH),$(SRC_NAME))
-
-OBJ =		$(addprefix $(OBJ_PATH),$(OBJ_NAME))
-
-INC =		$(addprefix $(INC_PATH),$(INC_NAME))
+	ft_strdup_tab.c
+OBJ = $(SRC:.c=.o)
 
 all: 		$(NAME)
 
 $(NAME): 	$(OBJ)
-			@ar rcs $@ $^
+			@ar rc $@ $^
 			@echo "compile done !"
 
-
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c $(INC)
-			@mkdir -p $(OBJ_PATH)
-			@$(CC) $(CFLAG) -I$(INC_PATH) -o $@ -c $<
+%.o:		%.c
+			@$(CC) $(CFLAG) -c $< -o $@
 
 clean:
-			@rm -rf $(OBJ)
+			@rm -f $(OBJ)
 			@echo "clean done !"
 
 fclean:		clean
-			@rm -rf $(NAME)
+			@rm -f $(NAME)
 			@echo "fclean done !"
 
 re: 		fclean all
