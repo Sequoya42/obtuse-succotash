@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 16:03:48 by rbaum             #+#    #+#             */
-/*   Updated: 2015/10/23 15:44:33 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/10/24 17:50:39 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,32 +18,32 @@ void			sig_return(int signo)
 		ft_putendl("");
 }
 
-t_cmd			*singleton(void)
+t_env			*SE_env(void)
 {
-	static	t_cmd cmd;
+	static	t_env env;
 
-	return (&cmd);
+	return (&env);
 }
 
 int				main(int argc, char **argv, char **envp)
 {
 	(void)argc;
 	(void)argv;
-	if ((SING->env = malloc(sizeof(char *) * 10)) == NULL)
+	if ((SE->env = malloc(sizeof(char *) * 10)) == NULL)
 		return (0);
 	if (signal(SIGINT, sig_return) == SIG_ERR)
 		ft_prompt();
 	if (envp[0])
 	{
-		SING->env = ft_strdup_tab(envp);
-		SING->environ = ft_strdup_tab(envp);
+		SE->env = ft_strdup_tab(envp);
+		SE->environ = ft_strdup_tab(envp);
 	}
 	else
 	{
 		ft_putendl("Running without env  : Behavior may be undefined");
-		SING->env[0] = ft_strjoin("PWD=", getcwd(NULL, 0));
-		SING->env[1] = ft_strjoin("OLD", SING->env[0]);
-		SING->environ = ft_strdup_tab(SING->env);
+		SE->env[0] = ft_strjoin("PWD=", getcwd(NULL, 0));
+		SE->env[1] = ft_strjoin("OLD", SE->env[0]);
+		SE->environ = ft_strdup_tab(SE->env);
 	}
 	ft_prompt();
 	return (0);

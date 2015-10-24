@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 18:16:30 by rbaum             #+#    #+#             */
-/*   Updated: 2015/10/20 15:20:13 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/10/24 18:00:17 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ size_t				ft_strlen(char const *s);
 size_t				ft_strlcat(char *dst, char const *src, size_t size);
 
 void				ft_exit(char *s);
-void				ft_init_tab(char **tab);
+void				ft_init_tab(char **t);
 void				ft_memdel(void **ap);
 void				ft_striter(char *s, void (*f)(char *));
 void				ft_striteri(char *s, void (*f) (unsigned int, char *));
@@ -78,7 +78,7 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstadd(t_list **alst, t_list *new);
-void				ft_clear_tab(char ***tab);
+void				ft_clear_tab(char ***t);
 void				ft_colstr(char *col, char *msg);
 void				ft_strcol(char *col, char *o, char *t, char *l);
 
@@ -98,7 +98,7 @@ int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_strequ(char const *s1, char const *s2);
 int					ft_strnequ(char const *s1, char const *s2, size_t n);
 int					get_next_line(int const fd, char **line);
-int					ft_nb_tab(char **tab);
+int					ft_nb_tab(char **t);
 int					ft_error(char *name, char *arg, char *msg);
 
 char				*ft_strcat(char *s1, const char *s2);
@@ -121,8 +121,8 @@ char				*ft_itoa(int n);
 char				*ft_strctrim(const char *s, char c);
 char				*ft_split_char(char *s, int i, char c);
 char				**ft_strsplit(const char *s, char c);
-char				**ft_update_tab(char **tab);
-char				**ft_strdup_tab(char **tab);
+char				**ft_update_tab(char **t);
+char				**ft_strdup_tab(char **t);
 
 t_list				*ft_lstnew(void const *content, size_t content_size);
 t_list				*ft_lstmap(t_list *list, t_list *(*f)(t_list*));

@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/14 15:52:58 by rbaum             #+#    #+#             */
-/*   Updated: 2015/10/23 15:44:15 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/10/24 17:51:36 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,21 @@ void	ft_update_env(void)
 	char	*tmp2;
 
 	i = 0;
-	while (SING->env[i])
+	while (SE->env[i])
 	{
-		if (ft_strnstr(SING->env[i], "PWD=", 4) != NULL)
+		if (ft_strnstr(SE->env[i], "PWD=", 4) != NULL)
 		{
-			tmp2 = ft_strdup(SING->env[i]);
-			free(SING->env[i]);
+			tmp2 = ft_strdup(SE->env[i]);
+			free(SE->env[i]);
 			tmp = getcwd(NULL, 0);
-			SING->env[i] = ft_strjoin("PWD=", tmp);
+			SE->env[i] = ft_strjoin("PWD=", tmp);
 			free(tmp);
 			tmp = NULL;
 		}
-		else if (ft_strnstr(SING->env[i], "OLDPWD=", 7) != NULL)
+		else if (ft_strnstr(SE->env[i], "OLDPWD=", 7) != NULL)
 		{
-			free(SING->env[i]);
-			SING->env[i] = ft_strjoin("OLD", tmp2);
+			free(SE->env[i]);
+			SE->env[i] = ft_strjoin("OLD", tmp2);
 			free(tmp2);
 		}
 		i++;
@@ -46,23 +46,23 @@ int		ft_cd_error(void)
 	struct stat		info;
 
 	ft_get_pwd();
-	i = ft_nb_tab(SING->arg);
-	stat(SING->arg[1], &info);
-	if (i == 1 && SING->home)
+	i = ft_nb_tab(SE->arg);
+	stat(SE->arg[1], &info);
+	if (i == 1 && SE->home)
 	{
-		if (chdir(SING->home + 5) == -1)
-			ft_error(SING->arg[0], NULL, "Unvalid Home");
+		if (chdir(SE->home + 5) == -1)
+			ft_error(SE->arg[0], NULL, "Unvalid Home");
 	}
-	else if (i == 1 && !SING->home)
-		return (ft_error(SING->arg[0], NULL, "Home not found"));
-	else if (ft_strcmp(SING->arg[1], "-") == 0)
-		chdir(SING->oldpwd + 7);
-	else if (chdir(SING->arg[1]) == 0)
+	else if (i == 1 && !SE->home)
+		return (ft_error(SE->arg[0], NULL, "Home not found"));
+	else if (ft_strcmp(SE->arg[1], "-") == 0)
+		chdir(SE->oldpwd + 7);
+	else if (chdir(SE->arg[1]) == 0)
 		;
 	else if (S_ISREG(info.st_mode))
-		return (ft_error(SING->arg[0], "not a directory", SING->arg[1]));
+		return (ft_error(SE->arg[0], "not a directory", SE->arg[1]));
 	else
-		ft_error(SING->arg[0], "No such file or directory", SING->arg[1]);
+		ft_error(SE->arg[0], "No such file or directory", SE->arg[1]);
 	ft_update_env();
 	return (0);
 }
@@ -71,9 +71,9 @@ int		ft_change_dir(void)
 {
 	int i;
 
-	i = ft_nb_tab(SING->arg);
+	i = ft_nb_tab(SE->arg);
 	if (i > 2)
-		return (ft_error(SING->arg[0], NULL, "Too many arguments."));
+		return (ft_error(SE->arg[0], NULL, "Too many arguments."));
 	if (ft_tild(1) == 1)
 		return (1);
 	else

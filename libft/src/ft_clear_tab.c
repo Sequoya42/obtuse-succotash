@@ -6,26 +6,26 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/15 19:50:14 by rbaum             #+#    #+#             */
-/*   Updated: 2015/03/17 19:42:57 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/10/24 18:00:53 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		ft_clear_tab(char ***tab)
+void		ft_clear_tab(char ***t)
 {
 	int		i;
 
 	i = 0;
-	if (*tab != NULL)
+	if (*t != NULL)
 	{
-		while ((*tab)[i])
+		while ((*t)[i])
 		{
-			free((*tab)[i]);
-			(*tab)[i] = NULL;
+			free((*t)[i]);
+			(*t)[i] = NULL;
 			i++;
 		}
-		free(*tab);
-		*tab = NULL;
+		free(*t);
+		*t = NULL;
 	}
 }

@@ -6,31 +6,31 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/15 19:56:26 by rbaum             #+#    #+#             */
-/*   Updated: 2015/03/16 18:40:23 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/10/24 18:00:36 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int			ft_nb_tab(char **tab)
+int			ft_nb_tab(char **t)
 {
 	int		i;
 
 	i = 0;
-	while (tab[i])
+	while (t[i])
 		i++;
 	return (i);
 }
 
-void		ft_init_tab(char **tab)
+void		ft_init_tab(char **t)
 {
 	int		i;
 
 	i = 0;
-	while (tab[i])
+	while (t[i])
 	{
-		tab[i] = NULL;
+		t[i] = NULL;
 		++i;
 	}
-	tab[i] = NULL;
+	t[i] = NULL;
 }

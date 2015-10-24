@@ -34,7 +34,7 @@ OBJ_NAME =		$(SRC_NAME:.c=.o)
 
 LIBFT_NAME =	libft.a
 
-INC_NAME =		ft_sh.h
+INC_NAME =		ft_sh.h\
 
 SRC =			$(addprefix $(SRC_PATH),$(SRC_NAME))
 
