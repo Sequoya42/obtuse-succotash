@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/23 15:46:14 by rbaum             #+#    #+#             */
-/*   Updated: 2015/10/24 17:56:35 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/10/26 15:21:04 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@
 # include <sys/ioctl.h>
 # include <sys/stat.h>
 # include "libft.h"
+
+# define SING				singleton()
+# define FD					(SING->fd)
+# define HEAD_SIZE			14
+# define K42 		       "\e[42m"
 
 # define SE 				SE_env()
 # define X					(s->w.ws_col)
@@ -127,4 +132,24 @@ int							ft_tmp_aff(int l, char **tmp);
 char						**pre_aff(void);
 t_env						*SE_env(void);
 
+void                ft_init(char **av, t_select *s);
+void                print_list(t_select *s);
+void                print_key(char buf[3]);
+void                sig_exit(int i);
+void                ft_z(int i);
+void                ft_fg(int i);
+void                ft_resize(int i);
+void                get_window_size(t_select *s);
+void                window_too_small(void);
+void                print_front(t_select *s);
+void                ft_move(t_select *s, char buf[3]);
+void                move_next(t_select *s);
+
+int                 tputs_putchar(int c);
+int                 modif_term(struct termios *term);
+int                 reset(struct termios *term);
+int                 get_key(t_select *s);
+int                 print_selected(t_select *s);
+
+t_select            *singleton(void);
 #endif
