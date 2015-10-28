@@ -22,3 +22,8 @@
 -exit_ca_mode		    te	     strings to	end programs using cup
 -key_eol				    kE	     clear-to-end-of-line key
 -key_eos				    kS	     clear-to-end-of-screen key
+
+
+
+tputs(tgoto(tgetstr("cm", NULL), node->pos_x - 1,
+write_list.c:				node->pos_y + node->nbr_lines), 1, ft_putchar);

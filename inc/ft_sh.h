@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/23 15:46:14 by rbaum             #+#    #+#             */
-/*   Updated: 2015/10/28 16:47:15 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/10/28 18:06:11 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,21 @@
 # include "libft.h"
 
 # define TMCP(x)			tputs(tgetstr(x, NULL), 1, tputs_putchar)
+# define TGT(c, x, y)		tputs(tgoto(tgetstr(c, NULL), x, y), 1, tputs_putchar)
+
 # define SING				singleton()
 # define FD					0
 # define HEAD_SIZE			14
 # define K42 		       "\e[42m"
+# define MX					24
+# define MY					2
 
 # define SV 				sing_var()
 # define X					(s->w.ws_col)
 # define Y					(s->w.ws_row)
 # define CD					(buf[0] == 4 && buf[1] == 0 && buf[2] == 0)
+# define CA					(buf[0] == 1 && buf[1] == 0 && buf[2] == 0)
+# define CE					(buf[0] == 5 && buf[1] == 0 && buf[2] == 0)
 # define ESC				(buf[0] == 27 && buf[1] == 0 && buf[2] == 0)
 # define DEL				(buf[0] == 127 && buf[1] == 0 && buf[2] == 0)
 # define DEL2				(buf[0] == 126 && buf[1] == 0 && buf[2] == 0)
@@ -103,6 +109,8 @@ typedef struct				s_core
 {
 	t_var					*v;
 	t_select				*s;
+	unsigned int			px;
+	unsigned int			py;
 
 }							t_core;
 

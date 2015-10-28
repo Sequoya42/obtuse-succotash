@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 16:03:48 by rbaum             #+#    #+#             */
-/*   Updated: 2015/10/28 16:43:58 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/10/28 18:06:20 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ t_core			*get_ready(void)
 	cr->s->term = malloc(sizeof(struct termios));
 	if (modif_term(cr->s->term) == -1)
 		ft_exit("Failed termcaps\n");
+	cr->px = MX;
+	cr->py = MY;
 	return (cr);
 }
 
