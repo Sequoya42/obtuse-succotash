@@ -6,17 +6,11 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 19:45:30 by rbaum             #+#    #+#             */
-/*   Updated: 2015/10/24 17:51:37 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/10/28 16:46:49 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
-
-void				sig_handler(int signo)
-{
-	if (signo == SIGINT)
-		ft_putchar('\n');
-}
 
 int					ft_exec(char *path)
 {
@@ -29,7 +23,7 @@ int					ft_exec(char *path)
 	if (pid > 0)
 		waitpid(pid, &stat, 0);
 	else
-		execve(path, SE->arg, SE->env);
+		execve(path, SV->arg, SV->env);
 	return (1);
 }
 
@@ -51,49 +45,66 @@ int					ft_point(void)
 	int				i;
 	char			**tmp;
 
-	if (ft_strchr(SE->name, ';'))
+	if (ft_strchr(SV->name, ';'))
 	{
-		tmp = ft_strsplit(SE->name, ';');
+		tmp = ft_strsplit(SV->name, ';');
 		i = 0;
 		while (tmp[i])
 		{
-			ft_clear_tab(&SE->arg);
-			SE->arg = ft_strsplit(tmp[i], ' ');
+			ft_clear_tab(&SV->arg);
+			SV->arg = ft_strsplit(tmp[i], ' ');
 			ft_get_pwd();
-			ft_gest_env();
+			ft_gest_var();
 			++i;
 		}
 		ft_clear_tab(&tmp);
 	}
 	else
 	{
-		SE->arg = ft_strsplit(SE->name, ' ');
+		SV->arg = ft_strsplit(SV->name, ' ');
 		ft_get_pwd();
-		ft_gest_env();
+		ft_gest_var();
 	}
 	return (0);
 }
-
-void				ft_prompt(void)
+void				ft_test(char buf[3])
 {
-	int				ret;
-	char			*line;
+	int				i;
 
-	ft_name_prompt();
-	signal(SIGINT, sig_handler);
-	if ((SE->path = malloc(sizeof(char*) * 10)) == NULL)
-		return ;
-	while ((ret = get_next_line(1, &line)) != 0)
-	{
-		SE->name = ft_strdup(line);
-		free(line);
-		ft_get_right_env();
-		ft_point();
-		stop_SEing();
-		free(SE->name);
-		SE->name = NULL;
-		if (SE->arg != NULL)
-			ft_clear_tab(&SE->arg);
+	i = 0;
+	if (RET)
 		ft_name_prompt();
+	 // else if (ft_isascii(buf[0]))
+	// {
+		SV->name[i++] = buf[0];
+		ft_putchar(buf[0]);
+	// }
+ if (DEL || DEL2)
+	tputs(tgetstr("dl", NULL), 1, tputs_putchar);
+
+}
+
+void				ft_prompt(t_core *cr)
+{
+	char			buf[3];
+
+	ft_bzero(buf, 3);
+	ft_name_prompt();
+	if ((SV->path = malloc(sizeof(char*) * 10)) == NULL)
+		return ;
+	while (read(0, buf, 3))
+	{
+		ft_test(buf);
+		move_line(cr, buf);
+		// SV->name = ft_strdup(line);
+		// free(line);
+		// ft_get_right_var();
+		// ft_point();
+		// stop_SEing();
+		// free(SV->name);
+		// SV->name = NULL;
+		// if (SV->arg != NULL)
+			// ft_clear_tab(&SV->arg);
+		// ft_name_prompt();
 	}
 }

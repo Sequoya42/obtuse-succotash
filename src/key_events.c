@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/16 18:42:34 by rbaum             #+#    #+#             */
-/*   Updated: 2015/10/26 15:12:09 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/10/28 13:51:32 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int					get_key(t_select *s)
 	char			buf[3];
 
 	ft_bzero(buf, 3);
-	read(FD, buf, 3);
+	read(0, buf, 3);
+	ft_putchar(buf[0]);
 	ft_move(s, buf);
 	if (CD)
 		sig_exit(0);

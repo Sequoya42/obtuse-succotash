@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/23 15:46:14 by rbaum             #+#    #+#             */
-/*   Updated: 2015/10/26 15:21:04 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/10/28 16:47:15 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,13 @@
 # include <sys/stat.h>
 # include "libft.h"
 
+# define TMCP(x)			tputs(tgetstr(x, NULL), 1, tputs_putchar)
 # define SING				singleton()
-# define FD					(SING->fd)
+# define FD					0
 # define HEAD_SIZE			14
 # define K42 		       "\e[42m"
 
-# define SE 				SE_env()
+# define SV 				sing_var()
 # define X					(s->w.ws_col)
 # define Y					(s->w.ws_row)
 # define CD					(buf[0] == 4 && buf[1] == 0 && buf[2] == 0)
@@ -86,7 +87,7 @@ typedef struct				s_select
 	unsigned int			nb_elem;
 }							t_select;
 
-typedef struct				s_env
+typedef struct				s_var
 {
 	char					*name;
 	char					*home;
@@ -96,18 +97,18 @@ typedef struct				s_env
 	char					**env;
 	char					**environ;
 	char					**arg;
-}							t_env;
+}							t_var;
 
 typedef struct				s_core
 {
-	t_env					*v;
+	t_var					*v;
 	t_select				*s;
 
 }							t_core;
 
-void						ft_prompt(void);
-void						ft_gest_env(void);
-void						ft_get_right_env(void);
+void						ft_prompt(t_core *cr);
+void						ft_gest_var(void);
+void						ft_get_right_var(void);
 void						ft_get_pwd(void);
 int							ft_exit_sh(void);
 void						ft_update_env(void);
@@ -124,32 +125,34 @@ int							check_current(int k);
 int							check_path(char **arg);
 int							check_env(void);
 int							aff_env(void);
-int							set_env(void);
+int							set_var(void);
 int							ft_unsetenv(void);
-int							ft_env_exe(void);
+int							ft_var_exe(void);
 int							ft_tmp_aff(int l, char **tmp);
 
 char						**pre_aff(void);
-t_env						*SE_env(void);
+t_var						*sing_var(void);
 
-void                ft_init(char **av, t_select *s);
-void                print_list(t_select *s);
-void                print_key(char buf[3]);
-void                sig_exit(int i);
-void                ft_z(int i);
-void                ft_fg(int i);
-void                ft_resize(int i);
-void                get_window_size(t_select *s);
-void                window_too_small(void);
-void                print_front(t_select *s);
-void                ft_move(t_select *s, char buf[3]);
-void                move_next(t_select *s);
+void              			ft_init(char **av, t_select *s);
+void              			print_list(t_select *s);
+void              			print_key(char buf[3]);
+void              			sig_exit(int i);
+void              			ft_z(int i);
+void              			ft_fg(int i);
+void              			ft_resize(int i);
+void              			get_window_size(t_select *s);
+void              			window_too_small(void);
+void              			print_front(t_select *s);
+void              			ft_move(t_select *s, char buf[3]);
+void              			move_next(t_select *s);
 
-int                 tputs_putchar(int c);
-int                 modif_term(struct termios *term);
-int                 reset(struct termios *term);
-int                 get_key(t_select *s);
-int                 print_selected(t_select *s);
+int               			tputs_putchar(int c);
+int               			modif_term(struct termios *term);
+int               			reset(struct termios *term);
+int               			get_key(t_select *s);
+int               			print_selected(t_select *s);
 
-t_select            *singleton(void);
+t_select          			*singleton(void);
+
+void		move_line(t_core *cr, char buf[3]);
 #endif

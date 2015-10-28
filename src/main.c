@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 16:03:48 by rbaum             #+#    #+#             */
-/*   Updated: 2015/10/26 15:08:55 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/10/28 16:43:58 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,33 +18,59 @@ void			sig_return(int signo)
 		ft_putendl("");
 }
 
-t_env			*SE_env(void)
+t_var			*sing_var(void)
 {
-	static	t_env env;
+	static	t_var env;
 
 	return (&env);
 }
 
-int				main(int argc, char **argv, char **envp)
+t_core			*get_ready(void)
 {
-	(void)argc;
-	(void)argv;
-	if ((SE->env = malloc(sizeof(char *) * 10)) == NULL)
-		return (0);
-	if (signal(SIGINT, sig_return) == SIG_ERR)
-		ft_prompt();
+	t_core		*cr;
+
+	if (!(cr = malloc(sizeof(t_core))))
+		ft_exit("Failed malloc\n!");
+	cr->v = sing_var();
+	if ((cr->v->env = malloc(sizeof(char *) * 10)) == NULL)
+		ft_exit("Failed malloc\n");
+	cr->s = singleton();
+	if ((cr->v->name = malloc(sizeof(char) * 1024)))
+		ft_bzero(cr->v->name, 1024);
+	cr->s->term = malloc(sizeof(struct termios));
+	if (modif_term(cr->s->term) == -1)
+		ft_exit("Failed termcaps\n");
+	return (cr);
+}
+
+void			choose(char **envp, t_core *cr)
+{
 	if (envp[0])
 	{
-		SE->env = ft_strdup_tab(envp);
-		SE->environ = ft_strdup_tab(envp);
+		cr->v->env = ft_strdup_tab(envp);
+		cr->v->environ = ft_strdup_tab(envp);
 	}
 	else
 	{
-		ft_putendl("Running without env  : Behavior may be undefined");
-		SE->env[0] = ft_strjoin("PWD=", getcwd(NULL, 0));
-		SE->env[1] = ft_strjoin("OLD", SE->env[0]);
-		SE->environ = ft_strdup_tab(SE->env);
+		ft_putendl("Running without env : Behavior may be undefined");
+		cr->v->env[0] = ft_strjoin("PWD=", getcwd(NULL, 0));
+		cr->v->env[1] = ft_strjoin("OLD", cr->v->env[0]);
+		cr->v->environ = ft_strdup_tab(cr->v->env);
 	}
-	ft_prompt();
+}
+
+int				main(int argc, char **argv, char **envp)
+{
+	t_core		*cr;
+
+	(void)argc;
+	(void)argv;
+    signal(SIGTSTP, ft_z);
+    signal(SIGCONT, ft_fg);
+    signal(SIGINT, sig_exit);
+    signal(SIGQUIT, sig_exit);
+	cr = get_ready();
+	choose(envp, cr);
+	ft_prompt(cr);
 	return (0);
 }

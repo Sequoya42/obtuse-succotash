@@ -1,0 +1,24 @@
+-doc
+-----
+-
+-     String		     	TCap	 Description
+-     Variables		 	Code
+-
+-enter_underline_mode    us	     begin underline mode
+-clear_screen		    cl	     clear screen and home cursor (P*)
+-carriage_return	    	cr	     carriage return (P*)
+-enter_reverse_mode	    mr	     turn on reverse video mode
+-exit_attribute_mode     me	     turn off all attributes
+-delete_line	     		dl	     delete line (P*)
+-
+-cursor_down	     		do	     down one line
+-cursor_right	     	nd	     move right	one space
+-cursor_up		     	up	     up	one line
+-cursor_left	     		le	     move left one space
+-enter_ca_mode	     	ti		 string to start programs using cursor_address
+-keypad_local	     	ke	     leave 'keyboard_transmit' mode
+-keypad_xmit	    		ks	     enter 'keyboard_transmit' mode
+-
+-exit_ca_mode		    te	     strings to	end programs using cup
+-key_eol				    kE	     clear-to-end-of-line key
+-key_eos				    kS	     clear-to-end-of-screen key
