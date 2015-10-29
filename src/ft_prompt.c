@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 19:45:30 by rbaum             #+#    #+#             */
-/*   Updated: 2015/10/28 17:53:57 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/10/29 16:09:40 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,7 @@ void				ft_test(char buf[3])
 		SV->name[i++] = buf[0];
 		ft_putchar(buf[0]);
 	// }
- if (DEL || DEL2)
-	tputs(tgetstr("dl", NULL), 1, tputs_putchar);
+
 
 }
 
@@ -96,6 +95,8 @@ void				ft_prompt(t_core *cr)
 	{
 		ft_test(buf);
 		move_line(cr, buf);
+		print_key(buf);
+		ft_bzero(buf, 3);
 		// SV->name = ft_strdup(line);
 		// free(line);
 		// ft_get_right_var();

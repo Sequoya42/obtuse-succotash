@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/23 15:46:14 by rbaum             #+#    #+#             */
-/*   Updated: 2015/10/28 18:06:11 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/10/29 16:11:53 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # include <sys/stat.h>
 # include "libft.h"
 
+# define TPS(x)				tputs(x, 0, tputs_putchar)
 # define TMCP(x)			tputs(tgetstr(x, NULL), 1, tputs_putchar)
 # define TGT(c, x, y)		tputs(tgoto(tgetstr(c, NULL), x, y), 1, tputs_putchar)
 
@@ -54,6 +55,8 @@
 # define CD					(buf[0] == 4 && buf[1] == 0 && buf[2] == 0)
 # define CA					(buf[0] == 1 && buf[1] == 0 && buf[2] == 0)
 # define CE					(buf[0] == 5 && buf[1] == 0 && buf[2] == 0)
+# define CL					(buf[0] == 12 && buf[1] == 0 && buf[2] == 0)
+
 # define ESC				(buf[0] == 27 && buf[1] == 0 && buf[2] == 0)
 # define DEL				(buf[0] == 127 && buf[1] == 0 && buf[2] == 0)
 # define DEL2				(buf[0] == 126 && buf[1] == 0 && buf[2] == 0)
@@ -115,6 +118,7 @@ typedef struct				s_core
 }							t_core;
 
 void						ft_prompt(t_core *cr);
+void						ft_name_prompt(void);
 void						ft_gest_var(void);
 void						ft_get_right_var(void);
 void						ft_get_pwd(void);

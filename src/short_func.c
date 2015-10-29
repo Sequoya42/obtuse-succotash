@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/16 18:20:32 by rbaum             #+#    #+#             */
-/*   Updated: 2015/10/28 12:50:02 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/10/29 16:07:42 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ int					tputs_putchar(int c)
 
 void				print_key(char buf[3])
 {
-	ft_putstr(ft_itoa(buf[0]));
-	ft_putchar('\t');
-	ft_putstr(ft_itoa(buf[1]));
-	ft_putchar('\t');
-	ft_putstr(ft_itoa(buf[2]));
-	ft_putchar('\n');
+	TPS(ft_itoa(buf[0]));
+	TPS("\t");
+	TPS(ft_itoa(buf[1]));
+	TPS("\t");
+	TPS(ft_itoa(buf[2]));
+	TPS("\n");
 }
 
 void				get_window_size(t_select *s)
