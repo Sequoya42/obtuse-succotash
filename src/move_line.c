@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/28 16:41:09 by rbaum             #+#    #+#             */
-/*   Updated: 2015/10/29 16:11:21 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/10/29 17:16:55 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void		move_line_up(t_core *cr)
 
 void		move_ca(t_core *cr)
 {
-	TGT("cr", cr->px, 1);
+	(void)cr;
+	TMCP("cr");//, cr->px, 1);
 }
 
 void		move_ce()
@@ -57,13 +58,13 @@ void		move_line(t_core *cr, char buf[3])
 		move_line_down(cr);
 	else if (UP && cr->py < 20)
 		move_line_up(cr);
-	else if (CA)
-		move_ca(cr);
-	else if (CE)
-		move_ce();
+	// else if (CA)
+		// move_ca(cr);
+	// else if (CE)
+	// 	move_ce();
 	 else if (DEL || DEL2)
 	 {
-	 		tputs(tgetstr("BC", NULL), 1, tputs_putchar);
+	 	TPS("YOLO");
 	 }
 	 else if (CL)
 	 {

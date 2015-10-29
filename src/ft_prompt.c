@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 19:45:30 by rbaum             #+#    #+#             */
-/*   Updated: 2015/10/29 16:09:40 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/10/29 17:42:05 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ int					ft_exec(char *path)
 	if (pid > 0)
 		waitpid(pid, &stat, 0);
 	else
+	{
+		ft_putchar('\n');
 		execve(path, SV->arg, SV->env);
+	}
 	return (1);
 }
 
@@ -67,45 +70,41 @@ int					ft_point(void)
 	}
 	return (0);
 }
-void				ft_test(char buf[3])
+void				ft_test(char buf[3], int *i)
 {
-	int				i;
-
-	i = 0;
 	if (RET)
+	{
+		ft_get_right_var();
+		ft_point();
+		stop_SEing();
+		if (SV->arg != NULL)
+			ft_clear_tab(&SV->arg);
+		ft_bzero(SV->name, ft_strlen(SV->name));
+		*i = 0;
+		TPS("\n");
 		ft_name_prompt();
-	 // else if (ft_isascii(buf[0]))
-	// {
-		SV->name[i++] = buf[0];
-		ft_putchar(buf[0]);
-	// }
-
-
+	}
+	else if (ft_isascii(buf[0]))
+		ft_putchar(SV->name[(*i)++] = buf[0]);
 }
 
 void				ft_prompt(t_core *cr)
 {
 	char			buf[3];
+	int				i;
 
+	i = 0;
 	ft_bzero(buf, 3);
 	ft_name_prompt();
 	if ((SV->path = malloc(sizeof(char*) * 10)) == NULL)
 		return ;
 	while (read(0, buf, 3))
 	{
-		ft_test(buf);
+		ft_test(buf, &i);
 		move_line(cr, buf);
-		print_key(buf);
-		ft_bzero(buf, 3);
+		// print_key(buf);
+		// ft_bzero(buf, 3);
 		// SV->name = ft_strdup(line);
 		// free(line);
-		// ft_get_right_var();
-		// ft_point();
-		// stop_SEing();
-		// free(SV->name);
-		// SV->name = NULL;
-		// if (SV->arg != NULL)
-			// ft_clear_tab(&SV->arg);
-		// ft_name_prompt();
 	}
 }

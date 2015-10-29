@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/17 14:49:15 by rbaum             #+#    #+#             */
-/*   Updated: 2015/10/28 17:11:26 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/10/29 17:32:35 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int					modif_term(struct termios *term)
 	term->c_cc[VMIN] = 1;
 	term->c_cc[VTIME] = 0;
 	if (tcsetattr(0, TCSADRAIN, term) == -1)
-		return (-1);
+		return (-1);	
 	return (0);
 }
 

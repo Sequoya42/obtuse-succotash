@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 18:16:30 by rbaum             #+#    #+#             */
-/*   Updated: 2015/10/24 18:00:17 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/10/29 17:28:19 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_clear_tab(char ***t);
 void				ft_colstr(char *col, char *msg);
 void				ft_strcol(char *col, char *o, char *t, char *l);
+void				ft_print_tab(char **t);
 
 int					debug(void);
 int					ft_atoi(char const *str);
