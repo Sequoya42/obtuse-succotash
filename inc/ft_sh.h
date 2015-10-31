@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/23 15:46:14 by rbaum             #+#    #+#             */
-/*   Updated: 2015/10/29 16:11:53 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/10/31 16:07:04 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,14 @@
 # define TGT(c, x, y)		tputs(tgoto(tgetstr(c, NULL), x, y), 1, tputs_putchar)
 
 # define SING				singleton()
+# define SV 				sing_var()
+
 # define FD					0
 # define HEAD_SIZE			14
 # define K42 		       "\e[42m"
 # define MX					24
 # define MY					2
 
-# define SV 				sing_var()
 # define X					(s->w.ws_col)
 # define Y					(s->w.ws_row)
 # define CD					(buf[0] == 4 && buf[1] == 0 && buf[2] == 0)
@@ -106,6 +107,8 @@ typedef struct				s_var
 	char					**env;
 	char					**environ;
 	char					**arg;
+	unsigned int			co;
+	unsigned int			li;
 }							t_var;
 
 typedef struct				s_core
@@ -114,7 +117,6 @@ typedef struct				s_core
 	t_select				*s;
 	unsigned int			px;
 	unsigned int			py;
-
 }							t_core;
 
 void						ft_prompt(t_core *cr);
@@ -128,6 +130,7 @@ void						stop_SEing(void);
 void						ft_previous_dir(void);
 void						ft_create_env(void);
 
+int							ft_point(void);
 int							ft_exec(char *path);
 int							ft_cd_error(void);
 int							ft_go_home(void);
@@ -166,5 +169,5 @@ int               			print_selected(t_select *s);
 
 t_select          			*singleton(void);
 
-void		move_line(t_core *cr, char buf[3]);
+int							move_line(t_core *cr, char buf[3], int *i);
 #endif

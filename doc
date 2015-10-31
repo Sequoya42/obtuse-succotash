@@ -25,5 +25,9 @@
 
 
 
+
+
+
+
 tputs(tgoto(tgetstr("cm", NULL), node->pos_x - 1,
 write_list.c:				node->pos_y + node->nbr_lines), 1, ft_putchar);

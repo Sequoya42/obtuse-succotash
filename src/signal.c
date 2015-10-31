@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/17 19:37:59 by rbaum             #+#    #+#             */
-/*   Updated: 2015/10/28 16:23:58 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/10/30 15:25:35 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,8 @@ void			ft_resize(int i)
 	t_select	*s;
 
 	s = SING;
-	tputs(tgoto(tgetstr("cm", NULL), 0, 0), s->fd, tputs_putchar);
-	tputs(tgetstr("cd", NULL), s->fd, tputs_putchar);
 	get_window_size(s);
-	print_list(s);
+	SV->co = s->w.ws_col;
+	SV->li = s->w.ws_row;
 	(void)i;
 }
