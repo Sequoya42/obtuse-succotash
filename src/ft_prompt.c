@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 19:45:30 by rbaum             #+#    #+#             */
-/*   Updated: 2015/10/31 16:11:44 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/11/01 13:57:51 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,6 @@ int					ft_point(void)
 	}
 	return (0);
 }
-// void				ft_test(char buf[3], int *i)
-// {
-
-// 	// else if (ft_isascii(buf[0]))
-// 	// {
-// 	// if (move_line() != 0)
-// 	// else
-// 	// 	ft_putchar(SV->name[(*i)++] = buf[0]);
-// 	// }
-// }
 
 void				ft_prompt(t_core *cr)
 {
@@ -93,14 +83,11 @@ void				ft_prompt(t_core *cr)
 		return ;
 	while (read(0, buf, 3))
 	{
-		if (SV->name && move_line(cr, buf, &i) == 0)
-		{
-			ft_putchar(SV->name[i++] = buf[0]);			// i = 0;
-		}
+		if (SV->name && move_line(cr, buf) == 0)
+			ft_putchar(SV->name[i++] = buf[0]);
 		else
 			i = 0;
-		// ft_test(buf, &i);
-		// move_line(cr, buf);
+		// print_key(buf);
 		ft_bzero(buf, 3);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/23 15:46:14 by rbaum             #+#    #+#             */
-/*   Updated: 2015/10/31 16:07:04 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/11/01 13:58:41 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@
 # define CA					(buf[0] == 1 && buf[1] == 0 && buf[2] == 0)
 # define CE					(buf[0] == 5 && buf[1] == 0 && buf[2] == 0)
 # define CL					(buf[0] == 12 && buf[1] == 0 && buf[2] == 0)
+# define CK					(buf[0] == 11 && buf[1] == 0 && buf[2] == 0)
+# define CY					(buf[0] == 15 && buf[1] == 0 && buf[2] == 0)
 
 # define ESC				(buf[0] == 27 && buf[1] == 0 && buf[2] == 0)
 # define DEL				(buf[0] == 127 && buf[1] == 0 && buf[2] == 0)
@@ -113,6 +115,7 @@ typedef struct				s_var
 
 typedef struct				s_core
 {
+	char					*ck_buf;
 	t_var					*v;
 	t_select				*s;
 	unsigned int			px;
@@ -169,5 +172,5 @@ int               			print_selected(t_select *s);
 
 t_select          			*singleton(void);
 
-int							move_line(t_core *cr, char buf[3], int *i);
+int							move_line(t_core *cr, char buf[3]);
 #endif
