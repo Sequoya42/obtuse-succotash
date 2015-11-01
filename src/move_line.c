@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/28 16:41:09 by rbaum             #+#    #+#             */
-/*   Updated: 2015/11/01 19:08:23 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/11/01 19:29:03 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 
 int		move_return(t_core *cr)
 {
+
 	ft_get_right_var();
 	ft_point();
 	stop_SEing();
-	ft_clear_tab(&SV->arg);
+	ft_clear_tab(&cr->v->arg);
 	ft_bzero(SV->name, ft_strlen(SV->name));
 	ft_name_prompt();
-	cr->px = MX;
-	cr->py += 1;
+	cr->px = 0;
+	// cr->py += 1;
 	return (1);
 
 }
@@ -38,7 +39,7 @@ int		move_del(t_core *cr, int i)
 {
 	if (cr->px < MX)
 	{
-		ft_putendl("da");
+		// ft_putendl("da");
 		return (1);
 	}
 	i = cr->px - MX - 1;

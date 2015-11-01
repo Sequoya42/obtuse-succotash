@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 19:45:30 by rbaum             #+#    #+#             */
-/*   Updated: 2015/11/01 19:23:06 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/11/01 19:37:36 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,11 @@ void			ft_insert_middle(char *s, int i, char c)
 	}
 
 }
-
+int		move_ca(t_core *cr);
 int				print_current_line(t_core *cr, int i, char c)
 {
 	(void)cr;
-	
+	// int j = 0;
 
 	if (!cr->v->name[i + 1])
 		SV->name[i++] = c;
@@ -99,8 +99,16 @@ int				print_current_line(t_core *cr, int i, char c)
 		ft_insert_middle(cr->v->name, (cr->px - MX), c);
 	ft_name_prompt();
 	ft_putstr(SV->name);
-	// TGT("cm", cr->px, cr->py);
-
+	TMCP("cr");
+	unsigned int j = 0;
+	while (j++ <= cr->px + 1)
+		TMCP("nd");
+// 	j = cr->px - MX;
+// 	if (j > 0)
+// 	{
+// 	while (--j)
+// 		move_line_left(cr);
+// }
 	return (i);
 }
 
