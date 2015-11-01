@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/23 16:38:48 by rbaum             #+#    #+#             */
-/*   Updated: 2015/10/28 12:50:34 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/11/01 19:15:50 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int				aff_env(void)
 
 	i = 0;
 	k = 0;
+	ft_putchar('\n');
 	if (ft_nb_tab(SV->arg) > 1)
 		return (ft_var_arg());
 	tmp = ft_update_tab(SV->env);

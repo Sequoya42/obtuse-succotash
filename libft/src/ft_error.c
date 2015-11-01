@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/20 07:50:24 by rbaum             #+#    #+#             */
-/*   Updated: 2015/10/11 16:31:46 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/11/01 19:09:14 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int		ft_error(char *name, char *arg, char *msg)
 	if (name != NULL)
 	{
 		ft_putstr_fd(name, 2);
-		ft_putstr_fd(": ", 2);
+		if (name[0] != '\n')
+			ft_putstr_fd(": ", 2);
 	}
 	if (arg != NULL)
 	{

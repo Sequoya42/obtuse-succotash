@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/01 14:48:31 by rbaum             #+#    #+#             */
-/*   Updated: 2015/11/01 16:27:52 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/11/01 18:51:34 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		move_line_left(t_core *cr)
 {
-	if (cr->px < MX)
+	if (cr->px <= MX)
 		return (1);
 	TMCP("ks");
 	TMCP("le");

@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/28 16:41:09 by rbaum             #+#    #+#             */
-/*   Updated: 2015/11/01 16:33:29 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/11/01 19:08:23 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int		move_return(t_core *cr)
 	stop_SEing();
 	ft_clear_tab(&SV->arg);
 	ft_bzero(SV->name, ft_strlen(SV->name));
-	TPS("\n");
 	ft_name_prompt();
 	cr->px = MX;
+	cr->py += 1;
 	return (1);
 
 }
@@ -38,22 +38,20 @@ int		move_del(t_core *cr, int i)
 {
 	if (cr->px < MX)
 	{
+		ft_putendl("da");
 		return (1);
 	}
-	i = cr->px - MX;
+	i = cr->px - MX - 1;
+	if (i < 0)
+	{
+		return (1);
+	}
 		move_line_left(cr);
 		TMCP("cr");
 		TMCP("ce");
 		get_name_right(SV->name, i);
 		ft_name_prompt();
 		ft_putstr(SV->name);
-
-		if (SV->name[i])
-		{
-			ft_putendl("qaeg");
-					// cr->px++;
-			move_line_left(cr);
-		}
 		return (1);
 
 }

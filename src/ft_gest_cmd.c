@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 19:45:34 by rbaum             #+#    #+#             */
-/*   Updated: 2015/11/01 14:52:07 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/11/01 19:14:31 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int					check_path(char **arg)
 	if ((check_current(0) == 1))
 		return (1);
 	if (SV->path == NULL)
-		return (ft_error(NULL, arg[0], "Command not found."));
+		return (ft_error("\n", arg[0], "Command not found."));
 	while (SV->path[i])
 	{
 		tmp = ft_strjoin(SV->path[i], "/");
@@ -105,7 +105,7 @@ int					check_path(char **arg)
 			return (ft_exec(SV->path[i]));
 		i++;
 	}
-	return (ft_error(NULL, arg[0], "Command not found."));
+	return (ft_error("\n", arg[0], "Command not found."));
 }
 
 void				ft_gest_var(void)
@@ -126,7 +126,7 @@ void				ft_gest_var(void)
 		SV->env = ft_strdup_tab(SV->environ);
 	}
 	else if (SV->arg[0] == '\0')
-		SV->name = SV->name;
+		ft_putchar('\n');
 	else if (SV->arg[0][0] == '/' && ft_strlen(SV->arg[0]) == 1)
 		ft_putendl("Permission denied");
 	else

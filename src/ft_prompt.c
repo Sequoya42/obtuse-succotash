@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 19:45:30 by rbaum             #+#    #+#             */
-/*   Updated: 2015/11/01 16:12:59 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/11/01 19:11:05 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,16 +88,17 @@ void			ft_insert_middle(char *s, int i, char c)
 int				print_current_line(t_core *cr, int i, char c)
 {
 	(void)cr;
+		TMCP("cr");
+	TMCP("ce");
+
 	if (!cr->v->name[i + 1])
 		SV->name[i++] = c;
 	else
-	{
 		ft_insert_middle(cr->v->name, (cr->px - MX), c);
-	}
-	TMCP("cr");
-	TMCP("ce");
 	ft_name_prompt();
 	ft_putstr(SV->name);
+	// TGT("cm", cr->px, cr->py);
+
 	return (i);
 }
 
