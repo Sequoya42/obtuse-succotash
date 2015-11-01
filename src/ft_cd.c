@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/14 15:52:58 by rbaum             #+#    #+#             */
-/*   Updated: 2015/10/28 12:51:08 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/11/01 19:24:41 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int		ft_cd_error(void)
 	int				i;
 	struct stat		info;
 
+	ft_putchar('\n');
 	ft_get_pwd();
 	i = ft_nb_tab(SV->arg);
 	stat(SV->arg[1], &info);

@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/23 15:46:14 by rbaum             #+#    #+#             */
-/*   Updated: 2015/11/01 16:28:14 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/11/01 19:21:22 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@
 # define HEAD_SIZE			14
 # define K42 		       "\e[42m"
 # define MX					25
-# define MY					2
+# define MY					0
 
 # define X					(SING->w.ws_col)
 # define Y					(SING->w.ws_row)

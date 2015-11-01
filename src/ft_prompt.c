@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 19:45:30 by rbaum             #+#    #+#             */
-/*   Updated: 2015/11/01 19:11:05 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/11/01 19:23:06 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void				ft_name_prompt(void)
 	char			*tmp;
 	char			*tmp2;
 
+	TMCP("cr");
+	TMCP("ce");
 	tmp2 = getcwd(NULL, 0);
 	tmp = ft_strrchr(tmp2, '/');
 	ft_putstr(KLGRN "sequoya:[");
@@ -83,13 +85,13 @@ void			ft_insert_middle(char *s, int i, char c)
 		s[i + 1] = tmp[i];
 		i++;
 	}
+
 }
 
 int				print_current_line(t_core *cr, int i, char c)
 {
 	(void)cr;
-		TMCP("cr");
-	TMCP("ce");
+	
 
 	if (!cr->v->name[i + 1])
 		SV->name[i++] = c;
