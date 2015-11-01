@@ -31,6 +31,7 @@ SRC_NAME =		main.c			ft_prompt.c		ft_gest_cmd.c		ft_env.c\
 				ft_sub_env.c	ft_short_cmd.c	ft_cd.c				key_events.c\
 				ft_init.c		move.c			short_func.c		modif_term.c\
 				print_list.c	signal.c		print_front.c		move_line.c\
+				move_control.c	move_direction.c					\
 
 OBJ_NAME =		$(SRC_NAME:.c=.o)
 

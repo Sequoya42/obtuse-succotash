@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/23 15:46:14 by rbaum             #+#    #+#             */
-/*   Updated: 2015/11/01 13:58:41 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/11/01 16:28:14 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@
 # define FD					0
 # define HEAD_SIZE			14
 # define K42 		       "\e[42m"
-# define MX					24
+# define MX					25
 # define MY					2
 
-# define X					(s->w.ws_col)
-# define Y					(s->w.ws_row)
+# define X					(SING->w.ws_col)
+# define Y					(SING->w.ws_row)
 # define CD					(buf[0] == 4 && buf[1] == 0 && buf[2] == 0)
 # define CA					(buf[0] == 1 && buf[1] == 0 && buf[2] == 0)
 # define CE					(buf[0] == 5 && buf[1] == 0 && buf[2] == 0)
@@ -172,5 +172,8 @@ int               			print_selected(t_select *s);
 
 t_select          			*singleton(void);
 
-int							move_line(t_core *cr, char buf[3]);
+int							move_line(t_core *cr, char buf[3], int i);
+int							move_control(t_core *cr, char buf[3]);
+int							move_direction(t_core *cr, char buf[3]);
+int							move_line_left(t_core *cr);
 #endif

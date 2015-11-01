@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 19:45:30 by rbaum             #+#    #+#             */
-/*   Updated: 2015/11/01 13:57:51 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/11/01 16:12:59 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,36 @@ int					ft_point(void)
 	return (0);
 }
 
+void			ft_insert_middle(char *s, int i, char c)
+{
+	// int			j;
+	char		*tmp;
+
+	tmp = ft_strdup(s);
+	s[i] = c;
+	while (tmp[i])
+	{
+		s[i + 1] = tmp[i];
+		i++;
+	}
+}
+
+int				print_current_line(t_core *cr, int i, char c)
+{
+	(void)cr;
+	if (!cr->v->name[i + 1])
+		SV->name[i++] = c;
+	else
+	{
+		ft_insert_middle(cr->v->name, (cr->px - MX), c);
+	}
+	TMCP("cr");
+	TMCP("ce");
+	ft_name_prompt();
+	ft_putstr(SV->name);
+	return (i);
+}
+
 void				ft_prompt(t_core *cr)
 {
 	char			buf[3];
@@ -83,10 +113,16 @@ void				ft_prompt(t_core *cr)
 		return ;
 	while (read(0, buf, 3))
 	{
-		if (SV->name && move_line(cr, buf) == 0)
-			ft_putchar(SV->name[i++] = buf[0]);
+		if (SV->name && move_line(cr, buf, i) == 0)
+		{
+			i = print_current_line(cr, i, buf[0]);
+			cr->px++;
+		}
 		else
+		{
 			i = 0;
+			// cr->px = MX;
+		}
 		// print_key(buf);
 		ft_bzero(buf, 3);
 	}
