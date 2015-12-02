@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_sh.h"
-#include "errno.h"
+
 int					modif_term(struct termios *term)
 {
 	if (tgetent(NULL, getenv("TERM")) == ERR)

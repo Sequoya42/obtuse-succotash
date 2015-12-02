@@ -12,15 +12,6 @@
 
 #ifndef FT_SH_H
 # define FT_SH_H
- // opendir
-  // ◦ // readdir // ◦ // closedir // 
-  // malloc // ◦ // free // ◦ // exit //
-    // getcwd // ◦ // chdir // ◦ // fork 
-    // stat // ◦ // lstat // ◦ // fstat // 
-     // open // ◦ // close // ◦ // read //
-     // write // ◦ // execve // ◦ // access //
-     // wait // ◦ // waitpid // ◦ // wait3 // ◦ // wait4 //
-      // signal // 
 
 # include <dirent.h>
 # include <fcntl.h>
@@ -29,18 +20,9 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <sys/uio.h>
-
-# include <termios.h>
-# include <curses.h>
-# include <term.h>
-# include <signal.h>
-# include <sys/ioctl.h>
-# include <sys/stat.h>
 # include "libft.h"
 
-# define TPS(x)				tputs(x, 0, tputs_putchar)
-# define TMCP(x)			tputs(tgetstr(x, NULL), 1, tputs_putchar)
-# define TGT(c, x, y)		tputs(tgoto(tgetstr(c, NULL), x, y), 1, tputs_putchar)
+# include "term_related.h"
 
 # define SING				singleton()
 # define SV 				sing_var()
@@ -51,53 +33,6 @@
 # define MX					25
 # define MY					0
 
-# define X					(SING->w.ws_col)
-# define Y					(SING->w.ws_row)
-# define CD					(buf[0] == 4 && buf[1] == 0 && buf[2] == 0)
-# define CA					(buf[0] == 1 && buf[1] == 0 && buf[2] == 0)
-# define CE					(buf[0] == 5 && buf[1] == 0 && buf[2] == 0)
-# define CL					(buf[0] == 12 && buf[1] == 0 && buf[2] == 0)
-# define CK					(buf[0] == 11 && buf[1] == 0 && buf[2] == 0)
-# define CY					(buf[0] == 15 && buf[1] == 0 && buf[2] == 0)
-
-# define ESC				(buf[0] == 27 && buf[1] == 0 && buf[2] == 0)
-# define DEL				(buf[0] == 127 && buf[1] == 0 && buf[2] == 0)
-# define DEL2				(buf[0] == 126 && buf[1] == 0 && buf[2] == 0)
-# define SPACE				(buf[0] == 32 && buf[1] == 0 && buf[2] == 0)
-# define RET				(buf[0] == 10 && buf[1] == 0 && buf[2] == 0)
-# define LEFT				(buf[0] == 27 && buf[1] == 91 && buf[2] == 68)
-# define UP					(buf[0] == 27 && buf[1] == 91 && buf[2] == 65)
-# define DOWN				(buf[0] == 27 && buf[1] == 91 && buf[2] == 66)
-# define RIGHT				(buf[0] == 27 && buf[1] == 91 && buf[2] == 67)
-
-
-typedef struct				s_member
-{
-	char					*name;
-	struct s_member			*next;
-	struct s_member			*prev;
-	int						selected;
-	int						current;
-	unsigned int			len;
-	unsigned int			index;
-	unsigned int			is_dir;
-}							t_member;
-
-typedef struct				s_select
-{
-	t_member				*first;
-	t_member				*last;
-	t_member				*cur;
-	struct winsize			w;
-	struct termios			*term;
-	unsigned int			co;
-	int						fd;
-	unsigned int			len_max;
-	unsigned int			tx;
-	unsigned int			ty;
-	unsigned int			total_size;
-	unsigned int			nb_elem;
-}							t_select;
 
 typedef struct				s_var
 {
@@ -176,4 +111,9 @@ int							move_line(t_core *cr, char buf[3], int i);
 int							move_control(t_core *cr, char buf[3]);
 int							move_direction(t_core *cr, char buf[3]);
 int							move_line_left(t_core *cr);
+void						sig_return(int signo);
+t_var						*sing_var(void);
+t_core						*get_ready(void);
+void						choose(char **envp, t_core *cr);
+
 #endif
