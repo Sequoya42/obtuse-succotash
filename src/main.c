@@ -24,7 +24,7 @@ t_var			*sing_var(void)
 
 	return (&env);
 }
-
+toto
 t_core			*get_ready(void)
 {
 	t_core		*cr;
