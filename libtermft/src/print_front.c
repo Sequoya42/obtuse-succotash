@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sh.h"
+#include "term_related.h"
 
 void                print_front(t_select *s)
 {

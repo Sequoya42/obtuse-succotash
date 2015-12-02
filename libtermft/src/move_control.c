@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sh.h"
-int		move_line_right(t_core *cr);
-int		move_ca(t_core *cr)
+#include "term_related.h"
+
+int		move_ca(t_select *cr)
 {
 	(void)cr;
 	TMCP("cr");
@@ -23,9 +23,9 @@ int		move_ca(t_core *cr)
 	return (1);
 }
 
-int		move_ce(t_core *cr)
+int		move_ce(t_select *cr, char *name)
 {
-	cr->px = MX + ft_strlen(SV->name);
+	cr->px = MX + ft_strlen(name);
 	TMCP("cr");
 	unsigned int i = 0;
 	while (i++ <= cr->px)
@@ -33,18 +33,18 @@ int		move_ce(t_core *cr)
 	return (1);
 }
 
-int		move_ck()
+int		move_ck(void)
 {
 
 	return (1);
 }
 
-int		move_cy()
+int		move_cy(void)
 {
 	return (1);
 }
 
-int		move_cl(t_core *cr)
+int		move_cl(t_select *cr)
 {
 		TMCP("cl");
 		ft_name_prompt();
@@ -53,12 +53,12 @@ int		move_cl(t_core *cr)
 		return (1);
 }
 
-int			move_control(t_core *cr, char buf[3])
+int			move_control(t_select *cr, char buf[3], char *name)
 {
 	if (CA)
 		return (move_ca(cr));
 	else if (CE)
-		return move_ce(cr);
+		return move_ce(cr, name);
 	else if (CL)
 		move_cl(cr);
 	else if (CK)

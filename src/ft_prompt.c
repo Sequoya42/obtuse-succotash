@@ -87,7 +87,7 @@ void			ft_insert_middle(char *s, int i, char c)
 	}
 
 }
-int		move_ca(t_core *cr);
+
 int				print_current_line(t_core *cr, int i, char c)
 {
 	(void)cr;
@@ -96,12 +96,12 @@ int				print_current_line(t_core *cr, int i, char c)
 	if (!cr->v->name[i + 1])
 		SV->name[i++] = c;
 	else
-		ft_insert_middle(cr->v->name, (cr->px - MX), c);
+		ft_insert_middle(cr->v->name, (cr->s->px - MX), c);
 	ft_name_prompt();
 	ft_putstr(SV->name);
 	TMCP("cr");
 	unsigned int j = 0;
-	while (j++ <= cr->px + 1)
+	while (j++ <= cr->s->px + 1)
 		TMCP("nd");
 // 	j = cr->px - MX;
 // 	if (j > 0)
@@ -127,7 +127,7 @@ void				ft_prompt(t_core *cr)
 		if (SV->name && move_line(cr, buf, i) == 0)
 		{
 			i = print_current_line(cr, i, buf[0]);
-			cr->px++;
+			cr->s->px++;
 		}
 		else
 		{

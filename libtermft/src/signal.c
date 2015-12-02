@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sh.h"
+#include "term_related.h"
 
 void			sig_exit(int i)
 {
@@ -61,7 +61,7 @@ void			ft_resize(int i)
 
 	s = SING;
 	get_window_size(s);
-	SV->co = s->w.ws_col;
-	SV->li = s->w.ws_row;
+	// SV->co = s->w.ws_col;
+	// SV->li = s->w.ws_row;
 	(void)i;
 }

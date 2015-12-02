@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sh.h"
+#include "term_related.h"
 
 static int			ft_del(t_select *s)
 {

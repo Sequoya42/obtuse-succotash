@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sh.h"
+#include "term_related.h"
 
 static void				choose_style(t_member *tmp, int fd)
 {

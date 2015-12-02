@@ -33,7 +33,6 @@
 # define MX					25
 # define MY					0
 
-
 typedef struct				s_var
 {
 	char					*name;
@@ -53,8 +52,7 @@ typedef struct				s_core
 	char					*ck_buf;
 	t_var					*v;
 	t_select				*s;
-	unsigned int			px;
-	unsigned int			py;
+
 }							t_core;
 
 void						ft_prompt(t_core *cr);
@@ -87,33 +85,10 @@ char						**pre_aff(void);
 t_var						*sing_var(void);
 
 void              			ft_init(char **av, t_select *s);
-void              			print_list(t_select *s);
-void              			print_key(char buf[3]);
-void              			sig_exit(int i);
-void              			ft_z(int i);
-void              			ft_fg(int i);
-void              			ft_resize(int i);
-void              			get_window_size(t_select *s);
-void              			window_too_small(void);
-void              			print_front(t_select *s);
-void              			ft_move(t_select *s, char buf[3]);
-void              			move_next(t_select *s);
 
-int               			tputs_putchar(int c);
-int               			modif_term(struct termios *term);
-int               			reset(struct termios *term);
-int               			get_key(t_select *s);
-int               			print_selected(t_select *s);
-
-t_select          			*singleton(void);
-
-int							move_line(t_core *cr, char buf[3], int i);
-int							move_control(t_core *cr, char buf[3]);
-int							move_direction(t_core *cr, char buf[3]);
-int							move_line_left(t_core *cr);
 void						sig_return(int signo);
 t_var						*sing_var(void);
-t_core						*get_ready(void);
-void						choose(char **envp, t_core *cr);
-
+t_core			*get_ready(void);
+void			choose(char **envp, t_core *cr);
+int		move_line(t_core *cr, char buf[3], int i);
 #endif

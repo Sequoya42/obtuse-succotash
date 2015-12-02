@@ -13,7 +13,6 @@
 #ifndef TERM_RELATED_H
 # define TERM_RELATED_H
 
-
 # include <termios.h>
 # include <curses.h>
 # include <term.h>
@@ -22,7 +21,13 @@
 # include <sys/stat.h>
 # include "libft.h"
 
+# define SING				singleton()
 
+# define FD					0
+# define HEAD_SIZE			14
+# define K42 		       "\e[42m"
+# define MX					25
+# define MY					0
 
 # define TPS(x)				tputs(x, 0, tputs_putchar)
 # define TMCP(x)			tputs(tgetstr(x, NULL), 1, tputs_putchar)
@@ -74,6 +79,41 @@ typedef struct				s_select
 	unsigned int			ty;
 	unsigned int			total_size;
 	unsigned int			nb_elem;
+	unsigned int			px;
+	unsigned int			py;
 }							t_select;
+
+int							modif_term(struct termios *term);
+int							reset(struct termios *term);
+void						move_next(t_select *s);
+void						ft_move(t_select *s, char buf[3]);
+
+int							move_ca(t_select *cr);
+int							move_ce(t_select *cr, char *name);
+int							move_ck(void);
+int							move_cy(void);
+int							move_cl(t_select *cr);
+int							move_control(t_select *cr, char buf[3], char *name);
+int							move_line_left(t_select *cr);
+int							move_line_right(t_select *cr, char *name);
+int							move_line_down(t_select *cr);
+int							move_line_up(t_select *cr);
+int							move_direction(t_select *cr, char buf[3], char *name);
+int							move_line_left(t_select *cr);
+
+void						print_front(t_select *s);
+void						print_list(t_select *s);
+t_select					*singleton(void);
+int							tputs_putchar(int c);
+void						print_key(char buf[3]);
+void						get_window_size(t_select *s);
+int							print_selected(t_select *s);
+void						sig_exit(int i);
+void						ft_z(int i);
+void						ft_fg(int i);
+void						window_too_small(void);
+void						ft_resize(int i);
+int							get_key(t_select *s);
+void		                ft_name_prompt(void);
 
 #endif

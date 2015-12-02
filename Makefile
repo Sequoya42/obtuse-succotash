@@ -25,17 +25,20 @@ OBJ_PATH =		./obj/
 
 LIBFT_PATH =	./libft/
 
+TERMFT_PATH = 	./libtermft/
+
 INC_PATH =		./inc/
 
 SRC_NAME =		main.c			ft_prompt.c		ft_gest_cmd.c		ft_env.c\
-				ft_sub_env.c	ft_short_cmd.c	ft_cd.c				key_events.c\
-				ft_init.c		move.c			short_func.c		modif_term.c\
-				print_list.c	signal.c		print_front.c		move_line.c\
-				move_control.c	move_direction.c					get_env.c\
+				ft_sub_env.c	ft_short_cmd.c	ft_cd.c				\
+						move_line.c			get_env.c\
+
 
 OBJ_NAME =		$(SRC_NAME:.c=.o)
 
 LIBFT_NAME =	libft.a
+
+TERMFT_NAME = 	termft.a
 
 INC_NAME =		ft_sh.h\
 
@@ -45,36 +48,47 @@ OBJ =			$(addprefix $(OBJ_PATH),$(OBJ_NAME))
 
 LIBFT =			$(addprefix $(LIBFT_PATH),$(LIBFT_NAME))
 
+TERMFT =		$(addprefix $(TERMFT_PATH), $(TERMFT_NAME))
+
 INC =			$(addprefix $(INC_PATH),$(INC_NAME))
 
 INCLIBFT = 		$(LIBFT_PATH)inc
 
-SELECT_FLAG =	-ltermcap
+INCTERMFT = 	$(TERMFT_PATH)inc
 
 LIBFT_FLAG = 	-L$(LIBFT_PATH) -lft
+
+TERMFT_FLAG = 	-L$(TERMFT_PATH) -ltermft -ltermcap
+
+INC_ALL		=	-I$(INC_PATH) -I$(INCLIBFT) -I$(INCTERMFT)
 
 all:			libft $(NAME) 
 
 $(NAME):		$(OBJ)
-				@$(CC) $(LIBFT_FLAG) $(SELECT_FLAG) -o $@ $^
+				@$(CC) $(LIBFT_FLAG) $(TERMFT_FLAG) -o $@ $^
 				@echo "Shell created"
 
 $(OBJ_PATH)%.o:	$(SRC_PATH)%.c $(INC)
 				@mkdir -p $(OBJ_PATH)
-				@$(CC) $(CFLAG) -I$(INC_PATH) -I$(INCLIBFT) -o $@ -c $<
+				@$(CC) $(CFLAG) $(INC_ALL) -o $@ -c $<
 
 libft:			$(LIBFT)
 
 $(LIBFT):		$(LIBFT_PATH)
 				@make -C $(LIBFT_PATH)
 
+$(TERMFT):		$(TERMFT_PATH)
+				@make -C $(TERMFT_PATH)
+
 clean:
 				@make -C $(LIBFT_PATH) clean
+				@make -C $(TERMFT_PATH) clean
 				@rm -f $(OBJ)
 
 fclean:			
 				@rm -f $(OBJ)
 				@make -C $(LIBFT_PATH) fclean
+				@make -C $(TERMFT_PATH) fclean
 				@rm -f $(NAME)
 
 re: 			fclean all
